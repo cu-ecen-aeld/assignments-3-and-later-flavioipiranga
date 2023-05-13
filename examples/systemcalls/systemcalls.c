@@ -66,11 +66,12 @@ bool do_exec(int count, ...)
 */
     int wstatus;
 int ret;
-
+/*
 	ret = fork();
 	if(ret < 0)
 		return false;
-
+*/
+printf("DEBUG: %s %s", command[0], command[1]);
 	ret = execv(command[0],command);
 	if(ret < 0)
 		return false;
@@ -112,8 +113,17 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
  *   The rest of the behaviour is same as do_exec()
  *
 */
+execv(command[0], command);
 
     va_end(args);
 
     return true;
 }
+
+/*int main()
+{
+
+printf("Result: %d", do_exec(2, "echo", "Testing execv implementation with echo"));
+
+return 0;
+}*/

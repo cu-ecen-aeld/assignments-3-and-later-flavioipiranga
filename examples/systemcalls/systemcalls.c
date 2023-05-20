@@ -1,5 +1,5 @@
 #include "systemcalls.h"
-
+#include <fcntl.h>
 /**
  * @param cmd the command to execute with system()
  * @return true if the command in @param cmd was executed
@@ -16,13 +16,13 @@ bool do_system(const char *cmd)
  *   and return a boolean true if the system() call completed with success
  *   or false() if it returned a failure
 */
-/*	int ret;
+	int ret;
     ret = system(cmd);
 
     if(ret < 0)
     {
 	    return false;
-    }*/
+    }
     return true;
 }
 
@@ -64,22 +64,25 @@ bool do_exec(int count, ...)
  *   as second argument to the execv() command.
  *
 */
-/*    int wstatus;
-int ret;
+	int wstatus;
+	int child_pid, ret = 0;
 
-	ret = fork();
-	if(ret < 0)
-		return false;
+	child_pid = fork();
+	if(0 == child_pid)
+	{
+		execv(command[0], command);
+		if(ret < 0)
+			return false;
+	}
+	if(child_pid > 0)
+	{
+		wait(&wstatus);
+		if(WIFEXITED(wstatus))
+			printf("Wait output:%d\n", WEXITSTATUS(wstatus));
+		if(wstatus != 0)
+			return false;		
+	}
 
-printf("DEBUG: %s %s", command[0], command[1]);
-	ret = execv(command[0],command);
-	if(ret < 0)
-		return false;
-
-	ret = wait(&wstatus);
-   	if(ret < 0)
-	    return false;
-*/	
 	va_end(args);
 
     return true;
@@ -113,7 +116,28 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
  *   The rest of the behaviour is same as do_exec()
  *
 */
-//execv(command[0], command);
+	int fd = open(outputfile, O_WRONLY);
+
+    	int wstatus;
+	int child_pid, ret = 0;
+
+	child_pid = fork();
+	if(0 == child_pid)
+	{
+
+		dup2(fd, 1);
+		execv(command[0], command);
+		if(ret < 0)
+			return false;
+	}
+	if(child_pid > 0)
+	{
+		wait(&wstatus);
+		if(WIFEXITED(wstatus))
+			printf("Wait output:%d\n", WEXITSTATUS(wstatus));
+		if(wstatus != 0)
+			return false;		
+	}
 
     va_end(args);
 

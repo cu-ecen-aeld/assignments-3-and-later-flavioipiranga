@@ -5,7 +5,7 @@
 set -e
 set -u
 
-BASEDIR=/home/coursera/Desktop/coursera/assignment-1-flavioipiranga/finder-app
+BASEDIR=/home/ubuntu/assignments-3-and-later-flavioipiranga/finder-app #/home/coursera/Desktop/coursera/assignment-1-flavioipiranga/finder-app
 OUTDIR=/tmp/aeld
 KERNEL_REPO=git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 KERNEL_VERSION=v5.1.10
@@ -13,8 +13,8 @@ BUSYBOX_VERSION=1_33_1
 FINDER_APP_DIR=$(realpath $(dirname $0))
 ARCH=arm64
 CROSS_COMPILE=aarch64-none-linux-gnu-
-CC_LIBDIR=/home/coursera/arm-toolchain/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib
-CC_LIB64DIR=/home/coursera/arm-toolchain/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64
+CC_LIBDIR=/home/ubuntu/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib #/home/coursera/arm-toolchain/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib
+CC_LIB64DIR=/home/ubuntu/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64 #/home/coursera/arm-toolchain/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64
 
 if [ $# -lt 1 ]
 then

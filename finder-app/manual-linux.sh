@@ -88,6 +88,8 @@ echo "Library dependencies"
 #cp ${CC_LIB64DIR}/libm.so.6 ${OUTDIR}/rootfs/lib64
 #cp ${CC_LIB64DIR}/libresolv.so.2 ${OUTDIR}/rootfs/lib64
 #cp ${CC_LIB64DIR}/libc.so.6 ${OUTDIR}/rootfs/lib64
+cp /tmp/aeld/Image /tmp/aesd-autograder
+cp -r /tmp/aeld/rootfs/home/* /tmp/aesd-autograder/rootfs/home
 
 # TODO: Make device nodes
 sudo mknod -m 666 dev/null c 1 3

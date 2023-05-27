@@ -95,6 +95,7 @@ sudo mknod -m 600 dev/console c 5 1
 
 # TODO: Clean and build the writer utility
 pwd
+ls /tmp
 ls /home/ubuntu
 ls /home/ubuntu/assignments-3-and-later-flavioipiranga/finder-app
 cd "$BASEDIR"

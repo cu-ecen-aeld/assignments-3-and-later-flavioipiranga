@@ -94,25 +94,21 @@ sudo mknod -m 666 dev/null c 1 3
 sudo mknod -m 600 dev/console c 5 1
 
 # TODO: Clean and build the writer utility
-pwd
-ls /tmp
-ls /home/ubuntu
-ls /home/ubuntu/assignments-3-and-later-flavioipiranga/finder-app
-cd "$BASEDIR"
-rm writer
-${CROSS_COMPILE}gcc -o writer writer.c
+#cd "$BASEDIR"
+#rm writer
+#${CROSS_COMPILE}gcc -o writer writer.c
 
 # TODO: Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
-cp writer ${OUTDIR}/rootfs/home
+#cp writer ${OUTDIR}/rootfs/home
 
-cp finder.sh ${OUTDIR}/rootfs/home
-cp finder-test.sh ${OUTDIR}/rootfs/home
+#cp finder.sh ${OUTDIR}/rootfs/home
+#cp finder-test.sh ${OUTDIR}/rootfs/home
 
 #mkdir -p ${OUTDIR}/rootfs/home/conf
-cp -r conf/ ${OUTDIR}/rootfs/home/
+#cp -r conf/ ${OUTDIR}/rootfs/home/
 
-cp autorun-qemu.sh ${OUTDIR}/rootfs/home
+#cp autorun-qemu.sh ${OUTDIR}/rootfs/home
 
 # TODO: Chown the root directory
 cd "${OUTDIR}/rootfs" 

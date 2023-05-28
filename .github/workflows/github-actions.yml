@@ -1,7 +1,11 @@
 name: assignment-autotest-test
 
 on:
-    workflow_dispatch:
+    push:
+        tags-ignore:
+            - '*'
+        branches:
+            - '*'
 
 jobs:
   unit-test:

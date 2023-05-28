@@ -97,7 +97,11 @@ sudo mknod -m 600 dev/console c 5 1
 
 # TODO: Clean and build the writer utility
 cd "$BASEDIR"
-rm writer
+
+if [ ! -e ${BASEDIR}/writer ]; then
+	rm writer
+fi
+
 ${CROSS_COMPILE}gcc -o writer writer.c
 
 # TODO: Copy the finder related scripts and executables to the /home directory

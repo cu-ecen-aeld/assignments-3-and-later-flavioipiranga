@@ -98,7 +98,7 @@ sudo mknod -m 600 dev/console c 5 1
 # TODO: Clean and build the writer utility
 cd "$BASEDIR"
 
-if [ ! -e ${BASEDIR}/writer ]; then
+if [ -e ${BASEDIR}/writer ]; then
 	rm writer
 fi
 

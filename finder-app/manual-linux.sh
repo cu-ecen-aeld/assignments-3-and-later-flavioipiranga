@@ -5,6 +5,9 @@
 set -e
 set -u
 
+echo "current folder"
+pwd
+
 BASEDIR=/home/ubuntu/assignments-3-and-later-flavioipiranga/finder-app #/home/coursera/Desktop/coursera/assignment-1-flavioipiranga/finder-app
 OUTDIR=/tmp/aeld
 KERNEL_REPO=git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
@@ -77,6 +80,7 @@ fi
 #make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE}
 #make CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
 echo "DEBUG MESSAGES:"
+ls /__w
 pwd
 ls /_work
 cd ${OUTDIR}/rootfs

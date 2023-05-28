@@ -112,7 +112,7 @@ cp ${BASEDIR}/finder.sh ${OUTDIR}/rootfs/home
 cp ${BASEDIR}/finder-test.sh ${OUTDIR}/rootfs/home
 
 mkdir -p ${OUTDIR}/rootfs/home/conf
-cp -r ${BASEDIR}/conf ${OUTDIR}/rootfs/home
+cp -r ${BASEDIR}/conf/ ${OUTDIR}/rootfs/home
 
 cp ${BASEDIR}/autorun-qemu.sh ${OUTDIR}/rootfs/home
 

@@ -41,12 +41,12 @@ if [ ! -e ${OUTDIR}/linux-stable/arch/${ARCH}/boot/Image ]; then
     git checkout ${KERNEL_VERSION}
 
     # TODO: Add your kernel build steps here
-    #ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} make -j8 defconfig
-    #ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} make all -j8
+    ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} make -j8 defconfig
+    ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} make all -j8
 fi
 
 echo "Adding the Image in outdir"
-#cp ${OUTDIR}/linux-stable/arch/arm64/boot/Image ${OUTDIR} 
+cp ${OUTDIR}/linux-stable/arch/arm64/boot/Image ${OUTDIR} 
 
 echo "Creating the staging directory for the root filesystem"
 cd "$OUTDIR"
@@ -85,11 +85,11 @@ ${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter"
 ${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
 
 # TODO: Add library dependencies to rootfs
-#cp "${CC_LIBDIR}/ld-linux-aarch64.so.1" "${OUTDIR}/rootfs/lib"
+cp /__w/assignments-3-and-later-flavioipiranga/lib/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib
 
-#cp ${CC_LIB64DIR}/libm.so.6 ${OUTDIR}/rootfs/lib64
-#cp ${CC_LIB64DIR}/libresolv.so.2 ${OUTDIR}/rootfs/lib64
-#cp ${CC_LIB64DIR}/libc.so.6 ${OUTDIR}/rootfs/lib64
+cp /__w/assignments-3-and-later-flavioipiranga/lib/libm.so.6 ${OUTDIR}/rootfs/lib64
+cp /__w/assignments-3-and-later-flavioipiranga/lib/libresolv.so.2 ${OUTDIR}/rootfs/lib64
+cp /__w/assignments-3-and-later-flavioipiranga/lib/libc.so.6 ${OUTDIR}/rootfs/lib64
 
 # TODO: Make device nodes
 sudo mknod -m 666 dev/null c 1 3

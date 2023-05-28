@@ -41,12 +41,12 @@ if [ ! -e ${OUTDIR}/linux-stable/arch/${ARCH}/boot/Image ]; then
     git checkout ${KERNEL_VERSION}
 
     # TODO: Add your kernel build steps here
-    ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} make -j8 defconfig
-    ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} make all -j8
+    #ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} make -j8 defconfig
+    #ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} make all -j8
 fi
 
 echo "Adding the Image in outdir"
-cp ${OUTDIR}/linux-stable/arch/arm64/boot/Image ${OUTDIR} 
+#cp ${OUTDIR}/linux-stable/arch/arm64/boot/Image ${OUTDIR} 
 
 echo "Creating the staging directory for the root filesystem"
 cd "$OUTDIR"
@@ -125,4 +125,4 @@ find . |  cpio -H newc -ov --owner root:root > ${OUTDIR}/initramfs.cpio
 gzip -f ${OUTDIR}/initramfs.cpio
 
 ls ${OUTDIR}
-
+ls /__w/assignments-3-and-later-flavioipiranga/

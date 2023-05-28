@@ -41,12 +41,12 @@ if [ ! -e ${OUTDIR}/linux-stable/arch/${ARCH}/boot/Image ]; then
     git checkout ${KERNEL_VERSION}
 
     # TODO: Add your kernel build steps here
-    #ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} make -j8 defconfig
-    #ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} make all -j8
+    ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} make -j8 defconfig
+    ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} make all -j8
 fi
 
 echo "Adding the Image in outdir"
-#cp ${OUTDIR}/linux-stable/arch/arm64/boot/Image ${OUTDIR} 
+cp ${OUTDIR}/linux-stable/arch/arm64/boot/Image ${OUTDIR} 
 
 echo "Creating the staging directory for the root filesystem"
 cd "$OUTDIR"
@@ -77,12 +77,12 @@ else
 fi
 
 # TODO: Make and install busybox
-#make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE}
-#make CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
+make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE}
+make CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
 cd ${OUTDIR}/rootfs
 echo "Library dependencies"
-#${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter"
-#${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
+${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter"
+${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
 
 # TODO: Add library dependencies to rootfs
 #cp "${CC_LIBDIR}/ld-linux-aarch64.so.1" "${OUTDIR}/rootfs/lib"
@@ -106,15 +106,15 @@ ${CROSS_COMPILE}gcc -o writer writer.c
 
 # TODO: Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
-#cp writer ${OUTDIR}/rootfs/home
+cp ${BASEDIR}/writer ${OUTDIR}/rootfs/home
 
-#cp finder.sh ${OUTDIR}/rootfs/home
-#cp finder-test.sh ${OUTDIR}/rootfs/home
+cp ${BASEDIR}/finder.sh ${OUTDIR}/rootfs/home
+cp ${BASEDIR}/finder-test.sh ${OUTDIR}/rootfs/home
 
-#mkdir -p ${OUTDIR}/rootfs/home/conf
-#cp -r conf/ ${OUTDIR}/rootfs/home/
+mkdir -p ${OUTDIR}/rootfs/home/conf
+cp -r ${BASEDIR}/conf ${OUTDIR}/rootfs/home
 
-#cp autorun-qemu.sh ${OUTDIR}/rootfs/home
+cp ${BASEDIR}/autorun-qemu.sh ${OUTDIR}/rootfs/home
 
 # TODO: Chown the root directory
 cd "${OUTDIR}/rootfs" 

@@ -8,7 +8,7 @@ set -u
 echo "current folder"
 pwd
 
-BASEDIR=/home/ubuntu/assignments-3-and-later-flavioipiranga/finder-app #/home/coursera/Desktop/coursera/assignment-1-flavioipiranga/finder-app
+BASEDIR=/__w/assignments-3-and-later-flavioipiranga/assignments-3-and-later-flavioipiranga/finder-app #/home/coursera/Desktop/coursera/assignment-1-flavioipiranga/finder-app
 OUTDIR=/tmp/aeld
 KERNEL_REPO=git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 KERNEL_VERSION=v5.1.10
@@ -79,10 +79,6 @@ fi
 # TODO: Make and install busybox
 #make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE}
 #make CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
-echo "DEBUG MESSAGES:"
-ls /__w
-pwd
-ls /_work
 cd ${OUTDIR}/rootfs
 echo "Library dependencies"
 #${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter"
@@ -94,18 +90,15 @@ echo "Library dependencies"
 #cp ${CC_LIB64DIR}/libm.so.6 ${OUTDIR}/rootfs/lib64
 #cp ${CC_LIB64DIR}/libresolv.so.2 ${OUTDIR}/rootfs/lib64
 #cp ${CC_LIB64DIR}/libc.so.6 ${OUTDIR}/rootfs/lib64
-cp /tmp/aeld/Image /tmp/aesd-autograder
-cp -r /tmp/aeld/rootfs/home/* /tmp/aesd-autograder/rootfs/home
-
 
 # TODO: Make device nodes
 sudo mknod -m 666 dev/null c 1 3
 sudo mknod -m 600 dev/console c 5 1
 
 # TODO: Clean and build the writer utility
-#cd "$BASEDIR"
-#rm writer
-#${CROSS_COMPILE}gcc -o writer writer.c
+cd "$BASEDIR"
+rm writer
+${CROSS_COMPILE}gcc -o writer writer.c
 
 # TODO: Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
